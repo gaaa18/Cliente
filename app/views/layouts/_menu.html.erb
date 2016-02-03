@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="<%=  welcome_index_path%>">Inicio</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <!-- Inicio Menu Cliente-->  
+      <ul class="nav navbar-nav">
+          
+        <% if user_signed_in?%>  
+          <li class="active"><a href="<%= clientes_index_path%>">Clientes <span class="sr-only">(current)</span></a></li>
+           <!--Inicio Buscador-->
+              <%= form_tag({:controller => "clientes", :action => "buscador_cliente"}, :method => :get, :class => "navbar-form navbar-left") do %>
+            <div class="form-group">
+              <%= text_field_tag "searchbox", params[:searchbox], :class => "form-control", :placeholder => "Buscar" %>
+              <%= submit_tag "Buscar", :name => nil, :class => "btn btn-default"%>
+              <%end%>
+            </div>
+            <!--Fin Buscador-->
+          
+        <% else %>
+             <li><a href="#">Contacto</a></li>
+        <% end %>
+      </ul>
+      <!-- Fin Menu Cliente-->
+      
+     
+      <ul class="nav navbar-nav navbar-right">
+          <% if current_user.nil?%>
+            <li><a href="<%= new_user_session_path%>">Ingresar</a></li>
+            <li><a href="<%= new_user_registration_path%>">Registrarse</a></li>
+          <% else %>
+            <li><a href="<%= destroy_user_session_path%>" data-method="delete">Salir</a></li>
+          <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

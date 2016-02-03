@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well">
+                <h1>Buscador</h1>
+<table class="table-bordered">
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Foto</th>
+        <th>Direccion</th>
+    </tr>
+<% @cliente.each do |c|%>
+    <tr>
+        <td><%= c.nombre%></td>
+        <td><%= c.apellido%></td>
+        <td><%= image_tag(c.foto, :size => "50x50")%></td>
+        <td><%= c.direccion%></td>
+    </tr>
+    
+    
+<%end%>
+</table>
+
+                <p class="btn btn-primary"><%= link_to "Atras", :back%></p>
+    </div>
+</div>
+</div>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="well">
+                  <h1>Listado Clientes</h1>
+                <a href="<%= clientes_nuevo_cliente_path%>" class="btn btn-primary">Agregar Cliente</a>
+                <br />
+                <br />
+                
+                <table class="table-striped table-bordered">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Foto</th>
+                        <th>Direccion</th>
+                    </tr>
+                    <% @clientes.each do |c|%>
+                    <tr>
+                        <td><%= c.nombre%></td>
+                        <td><%= c.apellido%></td>
+                        <td><%= image_tag(c.foto,:size => "50x50")%></td>
+                        <td><%= c.direccion%></td>
+                        <td class="btn btn-primary"><%= link_to "Editar",:controller => "clientes", :action => "editar_cliente", :id => c%></td>
+                        <td class="btn btn-primary"><%= link_to "Eliminar",:controller => "clientes", :action => "borrar_cliente", :id => c,:method => :delete, :data => {:confirm => "?Estas Seguro que quieres borrar este estado?"} %></td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
